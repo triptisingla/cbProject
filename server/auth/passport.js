@@ -6,34 +6,14 @@ const { User } = require('../models');
 
 console.log("here")
 passport.use(new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password'
 },
-    async function (email, password, done) {
-        console.log("Here", email, password);
+    async function (username, password, done) {
+        console.log("Here", username, password);
         try {
-            // client.query(queries.checkEmailExists, [email], (error, results) => {
-            //     console.log("resulte are 1", results)
-            //     if (!results.rows.length) {
-            //         console.log("resulte are ", results)
-            //         return done(null, false);
-            //     }
-            //     // console.log(results.rows.password)
-            //     let user = results.rows[0].s;
-            //     console.log(user.id);
-            //     client.query(queries.getPassword, [email], (error, results) => {
-            //         if (error)
-            //             return error;
-
-            //         console.log("results are ", results.rows[0].password == password)
-            //         if (results.rows[0].password == password) {
-            //             return done(null, user);
-            //         }
-            //         return done(null, false);
-
-            //     })
-            // })
-            let user = await User.findOne({ where: { username: email } });
+            
+            let user = await User.findOne({ where: { username: username } });
             if (!user) { return done(null, false); }
             // bcrypt.compare(password, user.password).then(function (result) {
             let result = password == user.password

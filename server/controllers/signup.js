@@ -6,9 +6,9 @@ const {User} = require("../models");
 
 
 const addUser = async (req, res) => {
-    const { email, password } = req.body;
-    console.log(email, password);
-    let username = email;
+    const { username, password } = req.body;
+    console.log(username, password);
+    // let username = email;
     let user = await User.findOne({ where: { username:username } });
     if (user) {
         return res.status(201).send('already present');

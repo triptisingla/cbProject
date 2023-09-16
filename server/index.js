@@ -6,11 +6,12 @@ const {User} = require('./models');
 const app = express();
 const PORT = 4444;
 const db = require('./models');
-
+const cors=require('cors');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/', express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 app.use(session({
     secret: 'asdjbaskdadbaskdv',
@@ -26,8 +27,8 @@ app.get('/',(req,res)=>{
     res.send("hii")
 })
 app.use('/signup',require('./routes/signup'))
-app.get('/random',(req,res)=>{
-    res.send("login")
+app.use('/profile',(req,res)=>{
+    return res.send({loginStatus:true})
 })
 app.use('/login',require('./routes/login'))
 
