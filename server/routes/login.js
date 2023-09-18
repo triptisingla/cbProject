@@ -2,15 +2,16 @@ const express = require('express');
 const router = express.Router();
 const passport = require('../auth/passport');
 
-router.use('/alag',(req,res)=>{
+router.get('/fail',(req,res)=>{
     res.send({loginStatus:false})
 })
 
+
 router.post('/',
-    passport.authenticate('local', { failureRedirect: '/login/alag' }),
+    passport.authenticate('local', { failureRedirect: '/login/fail' }),
     function (req, res) {
-        console.log(req.user.id)
-        res.redirect('/profile');
+        console.log("logged in user : ",req.user.id)
+        res.redirect('/success');
     });
 
 module.exports=router

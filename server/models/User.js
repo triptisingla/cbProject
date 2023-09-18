@@ -13,7 +13,21 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 notEmpty: true
             }
-        }
+        },
+        balance:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        // cart:{
+        //     type: [DataTypes.],
+        //     allowNull: false,
+        //     validate: {
+        //         notEmpty: true
+        //     }
+        // }
     })
     return User
 }
